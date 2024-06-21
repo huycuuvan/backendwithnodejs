@@ -1,11 +1,8 @@
-const { createServer } = require("node:http");
-const hostname = "localhost";
-const port = 3000;
-const server = createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader("Content-Type", "text/plain");
-  res.end("Hello World");
+const app = require("./src/app");
+const PORT = 8080;
+const server = app.listen(PORT, () => {
+  console.log("Hello world with port 8080");
 });
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
+// process.on("SIGINT", () => {
+//   server.close(() => console.log("Exit server"));
+// });
