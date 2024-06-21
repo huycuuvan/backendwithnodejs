@@ -1,22 +1,11 @@
-const http = require("http");
-// Create a local server to receive data from
-const server = http.createServer((req, res) => {
-  const url = req.url;
-  if (url === "/") {
-    res.write("<html>");
-    res.write("<heade><title>Send message</title></heade>");
-    res.write(
-      "<body><form action='/message' method='POST' name='message'><input type='text' ><button type ='submit'>Submit</button></form></body>"
-    );
-    res.write("</html>");
-    return res.end();
-  }
-  res.setHeader("Content-Type", "text/html");
-  res.write("<html>");
-  res.write("<heade><title>My first page</title></heade>");
-  res.write("<body><h1>Hello world</h1></body>");
-  res.write("</html>");
-  res.end();
+const { createServer } = require("node:http");
+const hostname = "localhost";
+const port = 3000;
+const server = createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader("Content-Type", "text/plain");
+  res.end("Hello World");
 });
-
-server.listen(8000);
+server.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
+});
